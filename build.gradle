@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+// 强制实行是统一格式编码
+tasks.withType(JavaCompile) {
+    options.encoding = "utf-8"
+}
+tasks.withType(Javadoc) {
+    options.encoding = "utf-8"
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    implementation('co.elastic.clients:elasticsearch-java:8.5.3')
+//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+    implementation  'com.baomidou:mybatis-plus-boot-starter:3.5.3.2'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    implementation('mysql:mysql-connector-java:8.0.33')
+    implementation('com.alibaba:fastjson:2.0.32')
+    implementation('org.apache.commons:commons-lang3')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
